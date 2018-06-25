@@ -2,31 +2,30 @@
 ---
 #### _Three Stage Course Material Project - Restaurant Reviews_
 
+* [Project Overview: Stage 1](#project_overview:_stage_1)
+* [Dependencies](#dependencies)
+
 ## Project Overview: Stage 1
 
-For the **Restaurant Reviews** projects, you will incrementally convert a static webpage to a mobile-ready web application. In **Stage One**, you will take a static design that lacks accessibility and convert the design to be responsive on different sized displays and accessible for screen reader use. You will also add a service worker to begin the process of creating a seamless offline experience for your users.
+This project was assigned by the udacity FEND course. The task to do were to fix the styling of the website and responsivness towards mobile screens. Add accesibility features and make the app accesible offline.
 
-### Specification
+In order for the app's maps to work you will need to get a personal MapBox api key found here https://www.mapbox.com/install/. And copy that key in js/main.js and js/restaurant.js files to the 'mapBoxTok' variable found on top of the file. Now you can run the app.
 
-You have been provided the code for a restaurant reviews website. The code has a lot of issues. It’s barely usable on a desktop browser, much less a mobile device. It also doesn’t include any standard accessibility features, and it doesn’t work offline at all. Your job is to update the code to resolve these issues while still maintaining the included functionality. 
+In order to open the app you should navigate with your terminal or other console, and type this command-> python -m SimpleHTTPServer 8000 <-this will run a server. The next step would be to run-> http://localhost:8000 <-in your browser. Preferably the latest version, so that you could take advantage of the service worker. Here is a website to check browser compatibility. https://jakearchibald.github.io/isserviceworkerready/.
 
-### What do I do from here?
-
-1. In this folder, start up a simple HTTP server to serve up the site files on your local computer. Python has some simple tools to do this, and you don't even need to know Python. For most people, it's already installed on your computer. 
-
-In a terminal, check the version of Python you have: `python -V`. If you have Python 2.x, spin up the server with `python -m SimpleHTTPServer 8000` (or some other port, if port 8000 is already in use.) For Python 3.x, you can use `python3 -m http.server 8000`. If you don't have Python installed, navigate to Python's [website](https://www.python.org/) to download and install the software.
-
-2. With your server running, visit the site: `http://localhost:8000`, and look around for a bit to see what the current experience looks like.
-3. Explore the provided code, and start making a plan to implement the required features in three areas: responsive design, accessibility and offline use.
-4. Write code to implement the updates to get this site on its way to being a mobile-ready website.
-
-## Leaflet.js and Mapbox:
-
-This repository uses [leafletjs](https://leafletjs.com/) with [Mapbox](https://www.mapbox.com/). You need to replace `<your MAPBOX API KEY HERE>` with a token from [Mapbox](https://www.mapbox.com/). Mapbox is free to use, and does not require any payment information. 
-
-### Note about ES6
-
-Most of the code in this project has been written to the ES6 JavaScript specification for compatibility with modern web browsers and future proofing JavaScript code. As much as possible, try to maintain use of ES6 in any additional JavaScript you write. 
+Also if you are going to make any changes to the files, you should also change a cacheName variable's, found in /sw.js, version number, in order for the effects to take place.
 
 
+## Dependencies
 
+responsive.css and styles.css are responsible for styling the page and making it responsive.
+
+restaurants.json holds most of the restaurant data.
+
+img folder holds all of the images.
+
+js folder holds all of the javascript files regarding the main functionality of the application. dbhelper.js fetches data. main.js sorts out the main page and fetches some data form dbhelper.js specifically for this main page. restaurant_info.js fetches data from dbhelper.js for the restaurants info. Also adds some elements to the DOM.
+
+index.html and restaurant.html are files for the both pages of the website. index.html is the main page and restaurant.html is the restaurant info page.
+
+sw.js is a file where a service worker mostly operates. It caches files and intercepts requests.

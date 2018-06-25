@@ -1,3 +1,45 @@
+/*
+* Service worker function
+*/
+serviceWorker = () => {
+  /* checks whether the browser supports service workers */
+  if ('serviceWorker' in navigator) {
+
+    /* registers a service worker */
+    navigator.serviceWorker.register('/sw.js').then(response => {
+
+      if (response.waiting) {
+        updateWorker(response.waiting);
+        return;
+      }
+
+      if (response.installing) {
+        checkInstall(response.installing);
+        return;
+      }
+
+      response.addEventListener('updatefound', () => {
+        checkInstall(response.installing);
+      });
+
+    });
+  }
+}
+
+/* check the install state of the service worker */
+checkInstall = worker => {
+  if (worker.status === 'installed') {
+    updateWorker(worker);
+  }
+}
+
+/* sends a skipWaiting message */
+updateWorker = worker => {
+  worker.postMessage({action: 'skipWaiting'});
+}
+
+serviceWorker();
+
 /**
  * Common database helper functions.
  */
@@ -157,7 +199,7 @@ class DBHelper {
    * Map marker for a restaurant.
    */
    static mapMarkerForRestaurant(restaurant, map) {
-    // https://leafletjs.com/reference-1.3.0.html#marker  
+    // https://leafletjs.com/reference-1.3.0.html#marker
     const marker = new L.marker([restaurant.latlng.lat, restaurant.latlng.lng],
       {title: restaurant.name,
       alt: restaurant.name,
@@ -165,7 +207,7 @@ class DBHelper {
       })
       marker.addTo(newMap);
     return marker;
-  } 
+  }
   /* static mapMarkerForRestaurant(restaurant, map) {
     const marker = new google.maps.Marker({
       position: restaurant.latlng,
@@ -178,4 +220,3 @@ class DBHelper {
   } */
 
 }
-
