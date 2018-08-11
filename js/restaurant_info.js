@@ -2,7 +2,7 @@ let restaurant;
 var newMap;
 
 /* insert your mapBoxToken here */
-const mapBoxTok = /* token */;
+const mapBoxTok = 'pk.eyJ1Ijoiam9uZ3V0IiwiYSI6ImNqaWxrcGU5NDIxNGYzcW84eHQ0M3ZvMGcifQ.n6E84H488CDVUWgvnxfelA';
 
 /**
  * Initialize map as soon as the page is loaded.
